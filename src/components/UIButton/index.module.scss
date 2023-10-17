@@ -1,0 +1,29 @@
+.btn {
+    padding: 8px;
+    margin: 4px;
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: deepskyblue;
+}
+
+.btn-primary {
+    border: 2px solid darkblue;
+    background-color: darkblue;
+    color: white;
+}
+
+.btn-secondary {
+    border: 2px solid darkblue;
+    background-color: white;
+    color: darkblue;
+}
+
+.btn-text {
+    border: none;
+    background-color: white;
+    color: darkblue;
+}
