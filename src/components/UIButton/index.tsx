@@ -4,6 +4,7 @@ import * as styles from './index.module.scss';
 type UIButtonPropsType = {
     variant: UIButtonVariantType;
     content: string;
+    classNames?: string;
 };
 
 type UIButtonVariantType = 'primary' | 'secondary' | 'text';
@@ -21,7 +22,7 @@ const UIButton = (props: UIButtonPropsType) => {
 
 
     return (
-        <button className={[styles['btn'], btnStyle(props.variant)].join(' ')}>{props.content}</button>
+        <button className={[props?.classNames, styles['btn'], btnStyle(props.variant)].join(' ')}>{props.content}</button>
     )
 };
 
