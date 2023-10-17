@@ -1,6 +1,5 @@
 import React from "react"
 import * as styles from './index.module.scss';
-import UIPanel from "../UIPanel";
 import UIButton from "../UIButton";
 
 type UIActionPanelPropsType = {
