@@ -2,7 +2,7 @@
   "name": "rpg-style-ui",
   "version": "1.0.0",
   "description": "GUI components for RPG style games.",
-  "main": "index.js",
+  "source": "./src/index.html",
   "scripts": {
     "prebuild": "run-s clean",
     "clean": "rimraf ./dist",
