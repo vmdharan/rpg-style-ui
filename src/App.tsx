@@ -1,5 +1,6 @@
 import React from 'react';
 import UIButton from './components/UIButton';
+import UIPanel from './components/UIPanel';
 
 const App = () => {
     return (
@@ -9,6 +10,8 @@ const App = () => {
             <UIButton variant='primary' content='Primary' />
             <UIButton variant='secondary' content='Secondary' />
             <UIButton variant='text' content='Text' />
+            <br />
+            <UIPanel title='UI Panel' content='UI Panel content goes here.' />
         </>
     )
 };
