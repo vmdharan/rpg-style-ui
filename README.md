@@ -12,3 +12,5 @@ UITooltip - Tooltips that can be shown on mouse hover or when clicking the 'more
 UIActionPanel - UI Panel with individual cells in either a row or column layout.
 
 UITabbedPanel - A generic panel with tabs to activate different content sections.
+
+UITabbedChatPanel - A chat panel with scrollable text display, user text input and tabs for different channels.

@@ -11,9 +11,9 @@ type UIPanelPropsType = {
 const UIPanel = (props: UIPanelPropsType) => {
     return (
         <>
-            <Draggable>
+            <Draggable handle='.handle'>
                 <div className={[props?.classNames, styles['ui-panel']].join(' ')}>
-                    <div className={styles['ui-panel-title']}>{props.title}</div>
+                    <div className={['handle', styles['ui-panel-title']].join(' ')}>{props.title}</div>
                     <div>{props.content}</div>
                 </div>
             </Draggable>
