@@ -10,3 +10,5 @@ UIButton - Buttons with variants for primary, secondary and text.
 UITooltip - Tooltips that can be shown on mouse hover or when clicking the 'more info' icon.
 
 UIActionPanel - UI Panel with individual cells in either a row or column layout.
+
+UITabbedPanel - A generic panel with tabs to activate different content sections.
