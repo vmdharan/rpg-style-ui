@@ -9,13 +9,16 @@ type UITooltipPropsType = {
 };
 
 const UITooltip = (props: UITooltipPropsType) => {
+    const panelContent = (
+        <>
+            <div>{props.content}</div>
+            <div style={{textAlign: 'end'}}><UIButton variant="primary" content="Close" /></div>
+        </>
+    );
 
     return (
         <>
-            <div className={styles['ui-tooltip']}>
-                <UIPanel title={props.title} content={props.content} />
-                <UIButton variant="primary" content="Close" />
-            </div>
+            <UIPanel title={props.title} content={panelContent} classNames={styles['ui-tooltip']} />
         </>
     )
 };
