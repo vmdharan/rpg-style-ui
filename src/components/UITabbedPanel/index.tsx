@@ -21,12 +21,12 @@ const UITabbedPanel = (props: UITabbedPanelPropsType) => {
             <div className={styles['ui-tabbed-panel']}>
                 <div className={styles['ui-tabbed-panel-header']}>
                     {props.tabs.map((tab, index) => (
-                        <button onClick={() => setActiveTab(index)} className={index === activeTab ? styles['ui-tabbed-panel-header-button-active'] : styles['ui-tabbed-panel-header-button']}>{tab.title}</button>
+                        <button key={tab.title} onClick={() => setActiveTab(index)} className={index === activeTab ? styles['ui-tabbed-panel-header-button-active'] : styles['ui-tabbed-panel-header-button']}>{tab.title}</button>
                     ))}
                 </div>
 
                 {props.tabs.map((tab, index) => (
-                    <div className={index === activeTab ? styles['ui-tabbed-panel-content-active'] : styles['ui-tabbed-panel-content']}>{tab.content}</div>
+                    <div key={tab.title + '-content'} className={index === activeTab ? styles['ui-tabbed-panel-content-active'] : styles['ui-tabbed-panel-content']}>{tab.content}</div>
                 ))}
 
                 <div className={styles['ui-tabbed-panel-actions']}>
