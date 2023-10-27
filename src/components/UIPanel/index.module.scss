@@ -7,12 +7,32 @@
     width: fit-content;
 }
 
-.ui-panel-title {
+.ui-panel-title-bar {
     font-size: 14pt;
     font-weight: bold;
-    margin-bottom: 4px;
+    display: flex;
+    background-color: black;
+    color: white;
 }
 
-.ui-panel-title:hover {
+.ui-panel-title-bar:hover {
     cursor: pointer;
+}
+
+.ui-panel-title {
+    flex: 1;
+    padding: 4px;
+}
+
+.ui-panel-title-btn-close {
+    font-size: 14pt;
+    font-weight: bold;
+    background-color: #d14141;
+    color: white;
+    padding: 4px;
+    flex: 0;
+}
+
+.ui-panel-title-btn-close:hover {
+    background-color: #a10000;
 }

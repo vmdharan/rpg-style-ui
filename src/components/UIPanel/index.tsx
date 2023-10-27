@@ -13,7 +13,10 @@ const UIPanel = (props: UIPanelPropsType) => {
         <>
             <Draggable handle='.handle'>
                 <div className={[props?.classNames, styles['ui-panel']].join(' ')}>
-                    <div className={['handle', styles['ui-panel-title']].join(' ')}>{props.title}</div>
+                    <div className={['handle', styles['ui-panel-title-bar']].join(' ')}>
+                        <div className={styles['ui-panel-title']}>{props.title}</div>
+                        <div className={styles['ui-panel-title-btn-close']}>X</div>
+                    </div>
                     <div>{props.content}</div>
                 </div>
             </Draggable>

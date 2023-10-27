@@ -5,7 +5,7 @@ import UIButton from "../UIButton";
 
 type UITabbedChatPanelPropsType = {
     title?: string;
-    tabs: UITabbedPanelContentPropsType[];
+    tabs: UITabbedChatPanelContentPropsType[];
 };
 
 type UITabbedChatPanelContentPropsType = {
@@ -24,6 +24,7 @@ const UITabbedChatPanel = (props: UITabbedChatPanelPropsType) => {
                 const updated = prev;
                 updated[activeTab] = updated[activeTab] + '\n' + inputText;
                 console.log(updated);
+                console.log(inputText);
                 return updated;
             });
             setInputText('');
@@ -35,13 +36,13 @@ const UITabbedChatPanel = (props: UITabbedChatPanelPropsType) => {
             <div className={styles['ui-tabbed-chat-panel']}>
                 <div className={styles['ui-tabbed-chat-panel-header']}>
                     {props.tabs.map((tab, index) => (
-                        <button onClick={() => setActiveTab(index)} className={index === activeTab ? styles['ui-tabbed-chat-panel-header-button-active'] : styles['ui-tabbed-chat-panel-header-button']}>{tab.title}</button>
+                        <button key={tab.title} onClick={() => setActiveTab(index)} className={index === activeTab ? styles['ui-tabbed-chat-panel-header-button-active'] : styles['ui-tabbed-chat-panel-header-button']}>{tab.title}</button>
                     ))}
                 </div>
 
                 {channelText.map((tab, index) => (
-                    <div className={index === activeTab ? styles['ui-tabbed-chat-panel-content-active'] : styles['ui-tabbed-chat-panel-content']}>
-                        <textarea rows={8} cols={50} readOnly style={{border: 'none'}} value={tab}></textarea>
+                    <div key={index + '-channel'} className={index === activeTab ? styles['ui-tabbed-chat-panel-content-active'] : styles['ui-tabbed-chat-panel-content']}>
+                        <textarea rows={8} cols={50} readOnly style={{border: 'none'}} value={tab?.toString()}></textarea>
                     </div>
                 ))}
 

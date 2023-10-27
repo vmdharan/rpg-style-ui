@@ -18,7 +18,7 @@ const UIActionPanel = (props: UIActionPanelPropsType) => {
             <div style={{ width: 'fit-content' }}>
                 <div className={styles['ui-action-panel']}>
                     {props.buttons.map(button => (
-                        <UIButton variant="secondary" content={button.label}
+                        <UIButton key={button.label} variant="secondary" content={button.label}
                             classNames={styles['ui-action-panel-buttons']} />
                     ))}
                 </div>
