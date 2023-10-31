@@ -10,11 +10,14 @@ const lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
 
 
 const App = () => {
-    const [uiPositions, setUIPositions] = useState<UIPosition[]>([
+    const defaultPositions = [
         { x: 0, y: 0, positionIndex: 0 },
         { x: 0, y: 0, positionIndex: 1 },
         { x: 0, y: 0, positionIndex: 2 }
-    ]);
+    ];
+    const uiConfig = localStorage.getItem('UIConfiguration');
+    const initialPositions = uiConfig ? JSON.parse(uiConfig) : defaultPositions;
+    const [uiPositions, setUIPositions] = useState<UIPosition[]>(initialPositions);
     const uiComponents: UIComponent[] = [];
 
     const ResetUIConfiguration = () => {
