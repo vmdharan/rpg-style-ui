@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import UIButton from './components/UIButton';
 import UIPanel, { UIComponent, UIPosition } from './components/UIPanel';
 import UITooltip from './components/UITooltip';
@@ -9,8 +9,6 @@ import UITabbedChatPanel from './components/UITabbedChatPanel';
 const lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
 
-
-
 const App = () => {
     const [uiPositions, setUIPositions] = useState<UIPosition[]>([
         { x: 0, y: 0, positionIndex: 0 },
@@ -18,6 +16,15 @@ const App = () => {
         { x: 0, y: 0, positionIndex: 2 }
     ]);
     const uiComponents: UIComponent[] = [];
+
+    const ResetUIConfiguration = () => {
+        setUIPositions([
+            { x: 0, y: 0, positionIndex: 0 },
+            { x: 0, y: 0, positionIndex: 1 },
+            { x: 0, y: 0, positionIndex: 2 }
+        ]);
+        SaveUIConfiguration();
+    };
 
     const UpdateUIComponent = (newX: number, newY: number, position: UIPosition) => {
         position = { ...position, x: newX, y: newY };
