@@ -1,11 +1,13 @@
 import React, { ReactNode, useCallback, useState } from "react";
-import UIPanel from "../UIPanel";
+import UIPanel, { UIPosition } from "../UIPanel";
 import * as styles from './index.module.scss';
 import UIButton from "../UIButton";
 
 type UITabbedPanelPropsType = {
     title?: string;
     tabs: UITabbedPanelContentPropsType[];
+    position: UIPosition;
+    update: (newX: number, newY: number, position: UIPosition) => void;
 };
 
 type UITabbedPanelContentPropsType = {
@@ -39,7 +41,9 @@ const UITabbedPanel = (props: UITabbedPanelPropsType) => {
     
     return (
         <>
-            <UIPanel title={props.title} content={panelContent()} classNames={styles['ui-tabbed-panel-base']} />
+            <UIPanel title={props.title} content={panelContent()} 
+                position={props.position} update={props.update}
+                classNames={styles['ui-tabbed-panel-base']} />
         </>
     )
 };

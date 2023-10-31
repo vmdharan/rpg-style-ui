@@ -1,11 +1,13 @@
 import React, { KeyboardEvent, ReactNode, useCallback, useState } from "react";
-import UIPanel from "../UIPanel";
+import UIPanel, { UIPosition } from "../UIPanel";
 import * as styles from './index.module.scss';
 import UIButton from "../UIButton";
 
 type UITabbedChatPanelPropsType = {
     title?: string;
     tabs: UITabbedChatPanelContentPropsType[];
+    position: UIPosition;
+    update: (newX: number, newY: number, position: UIPosition) => void;
 };
 
 type UITabbedChatPanelContentPropsType = {
@@ -56,7 +58,9 @@ const UITabbedChatPanel = (props: UITabbedChatPanelPropsType) => {
     
     return (
         <>
-            <UIPanel title={props.title} content={panelContent()} classNames={styles['ui-tabbed-chat-panel-base']} />
+            <UIPanel title={props.title} content={panelContent()} 
+                position={props.position} update={props.update}
+                classNames={styles['ui-tabbed-chat-panel-base']} />
         </>
     )
 };

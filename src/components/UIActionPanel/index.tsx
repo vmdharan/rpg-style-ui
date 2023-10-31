@@ -1,11 +1,13 @@
 import React from "react"
 import * as styles from './index.module.scss';
 import UIButton from "../UIButton";
-import UIPanel from "../UIPanel";
+import UIPanel, { UIPosition } from "../UIPanel";
 
 type UIActionPanelPropsType = {
     title?: string;
     buttons: UIActionPanelButtonPropsType[];
+    position: UIPosition;
+    update: (newX: number, newY: number, position: UIPosition) => void;
 };
 
 type UIActionPanelButtonPropsType = {
@@ -27,7 +29,9 @@ const UIActionPanel = (props: UIActionPanelPropsType) => {
     );
     return (
         <>
-            <UIPanel title={props?.title} content={panelContent} classNames={styles['ui-action-panel-base']} />
+            <UIPanel title={props?.title} content={panelContent} 
+                position={props.position} update={props.update}
+                classNames={styles['ui-action-panel-base']} />
         </>
     )
 };

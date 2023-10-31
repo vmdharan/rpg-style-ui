@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
 import UIButton from './components/UIButton';
-import UIPanel from './components/UIPanel';
+import UIPanel, { UIComponent, UIPosition } from './components/UIPanel';
 import UITooltip from './components/UITooltip';
 import UIActionPanel from './components/UIActionPanel';
 import UITabbedPanel from './components/UITabbedPanel';
@@ -8,7 +8,80 @@ import UITabbedChatPanel from './components/UITabbedChatPanel';
 
 const lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
+
+
+
 const App = () => {
+    const [uiPositions, setUIPositions] = useState<UIPosition[]>([
+        { x: 0, y: 0, positionIndex: 0 },
+        { x: 0, y: 0, positionIndex: 1 },
+        { x: 0, y: 0, positionIndex: 2 }
+    ]);
+    const uiComponents: UIComponent[] = [];
+
+    const UpdateUIComponent = (newX: number, newY: number, position: UIPosition) => {
+        position = { ...position, x: newX, y: newY };
+        console.log(newX, newY, position);
+        setUIPositions((prev) => {
+            return [...prev.filter(f => f.positionIndex != position.positionIndex), position]
+        });
+        SaveUIConfiguration();
+    };
+
+    const InitialiseUIConfiguration = () => {
+
+        uiComponents.push(
+            {
+                positionIndex: 0,
+                component: (
+                    <UIActionPanel title='Action bar 1' position={uiPositions[0]} update={UpdateUIComponent}
+                        buttons={[
+                            { label: '1' }, { label: '2' }, { label: '3' }, { label: '4' }, { label: '5' },
+                            { label: '6' }, { label: '7' }, { label: '8' }, { label: '9' }, { label: '10' },
+                            { label: '11' }, { label: '12' },
+                        ]} />
+                )
+            }
+        );
+
+        uiComponents.push(
+            {
+                positionIndex: 1,
+                component: (
+                    <UITabbedPanel title='Configuration' position={uiPositions[1]} update={UpdateUIComponent}
+                        tabs={
+                            [
+                                { title: 'tab 1', content: <>MyContent</> },
+                                { title: 'tab two', content: <>Some more content</> },
+                                { title: 'Tab 3', content: <>Different content</> },
+                                { title: 'myTab 4', content: <>Same content.</> }
+                            ]} />
+                )
+            }
+        );
+
+        uiComponents.push(
+            {
+                positionIndex: 2,
+                component: (
+                    <UITabbedChatPanel title='Chat' position={uiPositions[2]} update={UpdateUIComponent} tabs={
+                        [
+                            { title: 'Channel 1', content: lipsum },
+                            { title: 'Channel two', content: lipsum },
+                            { title: 'Channel 3', content: lipsum },
+                            { title: 'Channel 4', content: lipsum }
+                        ]} />
+                )
+            }
+        );
+    };
+
+    const SaveUIConfiguration = () => {
+        localStorage.setItem('UIConfiguration', JSON.stringify(uiPositions?.map(config => config)) ?? '');
+    };
+
+    InitialiseUIConfiguration();
+
     return (
         <>
             <>RPG Style UI</>
@@ -28,28 +101,13 @@ const App = () => {
             <UITooltip title='UI Tooltip' content='Tooltip content goes here.' />
             <br /> */}
 
-            <UIActionPanel title='Action bar 1'
-                buttons={[
-                    { label: '1' }, { label: '2' }, { label: '3' }, { label: '4' }, { label: '5' },
-                    { label: '6' }, { label: '7' }, { label: '8' }, { label: '9' }, { label: '10' },
-                    { label: '11' }, { label: '12' },
-                ]} />
+            {uiComponents.map((config: UIComponent) => (
+                config.component
+            ))}
 
-            <UITabbedPanel title='Configuration' tabs={
-                [
-                    { title: 'tab 1', content: <>MyContent</> },
-                    { title: 'tab two', content: <>Some more content</> },
-                    { title: 'Tab 3', content: <>Different content</> },
-                    { title: 'myTab 4', content: <>Same content.</> }
-                ]} />
 
-            <UITabbedChatPanel title='Chat' tabs={
-                [
-                    { title: 'Channel 1', content: lipsum },
-                    { title: 'Channel two', content: lipsum },
-                    { title: 'Channel 3', content: lipsum },
-                    { title: 'Channel 4', content: lipsum }
-                ]} />
+
+
         </>
     )
 };
